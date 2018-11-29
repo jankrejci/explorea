@@ -5,9 +5,20 @@
 {% endblock title %}
 
 {% block content %}
-<ul>
+  <table border=1px align=center>
+    <tr>
+      <td><b>Name</b></td>
+      <td><b>Location</b></td>
+      <td><b>Description</b></td>
+    </tr>
+
   {% for event in events %}
-  <li>{{event.name}} Location: {{event.location}} Description: {{event.description}}</li>
+    <tr>
+      <td><a href="/event/{{event.id}}">{{event.name}}</a><br></td>
+      <td>{{event.location}}</td>
+      <td width = 300>{{event.description}}</td>
+    </tr>
   {% endfor %}
-</ul>
+
+  </table>
 {% endblock content %}

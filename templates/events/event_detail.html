@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Event Listing</title>
+{% endblock title %}
+
+{% block content %}
+  <table align=center width=400>
+    <tr>
+      <td colspan=2><b>{{event.name}}</b></td>
+    </tr>
+    <tr>
+      <td align=left>Location:</td>
+      <td>{{event.location}}</td>
+    </tr>
+    <tr>
+      <td align=left colspan=2>Description:</td>
+    </tr>
+    <tr>
+      <td align=left colspan=2>{{event.description}}</td>
+    </tr>
+
+    <tr>
+      <td><b>Date</b></td>
+      <td><b>Price</b></td>
+      <td><b>Seats</b></td>
+    </tr>
+
+    {% for event_run in event_runs %}
+      <tr>
+        <td>{{event_run.happens}}</td>
+        <td>{{event_run.price}}</td>
+        <td>{{event_run.seats_available}}</td>
+      </tr>
+    {% endfor %}
+
+{% endblock content %}

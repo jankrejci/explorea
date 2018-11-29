@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Event
+from .models import EventRun
 
-# Create your views here.
+
 def index(request):
     return render(request, 'events/index.html')
 
@@ -12,14 +13,12 @@ def event_listing(request):
     return render(request, 'events/event_listing.html', {'events':events})
 
 
-def event_detail(request, name):
-    data = {'Chill' :  '<h2>Chill on the beach just for $400</h2>',
-            'Camping': '<h2>Camp with us for $50</h2>',
-            'Flying':  '<h2>Fly for free</h2>'}
+def event_detail(request, pk):
 
-    selection = data.get(name)
+    event = Event.objects.get(pk=pk)
+    event_runs = EventRun.objects.filter(event=pk)
 
-    if selection:
-        return HttpResponse(selection)
+    if event:
+        return render(request, 'events/event_detail.html', {'event':event, 'event_runs':event_runs})
     else:
         return HttpResponse('No such event in offering for now')
